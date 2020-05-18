@@ -1,10 +1,10 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ListConfig} from '../../../../shared/components/paginated-list/paginated-list.component';
 import {User} from '../../models/user.model';
 import {Router} from '@angular/router';
 import {UsersService} from '../../users.service';
 import {cloneDeep} from 'lodash';
 import {Subscription} from 'rxjs';
+import {ListConfig} from '../../../../shared/models/list.data';
 
 @Component({
   selector: 'app-users-list',
@@ -53,16 +53,14 @@ export class UsersListComponent implements OnInit, OnDestroy {
       }
 
       case 'delete': {
-        // this.toastsService.confirm('Are you sure?', 'Invitation Removal.', () => {
-          this.deleteUser(event.item);
-        // });
-          break;
+        this.deleteUser(event.item);
+        break;
       }
     }
   }
 
   private deleteUser(user: User) {
-    this.usersService.removeUser(user.id).then(res => console.log(res));
+    this.usersService.removeUser(user.id);
   }
 
 }

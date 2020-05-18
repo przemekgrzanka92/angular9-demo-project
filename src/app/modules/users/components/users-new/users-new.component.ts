@@ -52,7 +52,6 @@ export class UsersNewComponent implements OnInit {
 
     this.usersService.createNewUser(new User(user))
       .then((res) => {
-        console.log(res);
         this.back();
       });
   }

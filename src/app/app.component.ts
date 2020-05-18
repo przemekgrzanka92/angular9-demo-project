@@ -7,8 +7,6 @@ import {TranslateService} from '@ngx-translate/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'angular9-demo-project';
-
   constructor(public translateService: TranslateService) {
     translateService.setDefaultLang('en');
   }

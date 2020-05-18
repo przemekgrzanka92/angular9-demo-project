@@ -1,22 +1,7 @@
 import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
-import {Pagination} from './paginated-list.service';
 import {PaginatedListService} from './paginated-list.service';
-
-export interface ListConfigAction {
-  actionName: string;
-  label: string;
-}
-
-export interface ListConfigField {
-  fieldName: string;
-  label: string;
-  type?: string;
-}
-
-export interface ListConfig {
-  fieldNames: ListConfigField[];
-  actions?: ListConfigAction[];
-}
+import {ListConfig} from '../../models/list.data';
+import {Pagination} from '../../models/pagination.data';
 
 @Component({
   selector: 'app-paginated-list',

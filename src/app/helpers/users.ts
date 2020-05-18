@@ -70,12 +70,5 @@ export const USERS: UserData[] = [
     lastName: 'Carlson',
     role: 'ROLE_USER',
     email: 'janellecarlson@terascape.com'
-  },
-  {
-    id: '5ec264ea89ab9c766f4d126e',
-    firstName: 'Haley',
-    lastName: 'Davis',
-    role: 'ROLE_USER',
-    email: 'haleydavis@terascape.com'
   }
 ];
