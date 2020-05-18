@@ -1,0 +1,69 @@
+<form *ngIf="form && formJsonConfig" [formGroup]="form">
+
+  <div *ngFor="let row of formJsonConfig.rows" class="form-row my-2">
+    <div *ngFor="let column of row.columns" class="col">
+      <ng-container *ngIf="column.type === 'text' || column.type === 'email' || column.type === 'tel' || column.type === 'password'">
+        <label *ngIf="column.label">{{column.label}}</label>
+        <input
+          type="{{column.type}}"
+          formControlName="{{column.name}}"
+          class="form-control"
+          [readonly]="column.forceReadOnly !== undefined ? column.forceReadOnly : formReadOnly"
+          [ngClass]="{ 'is-invalid': form.controls[column.name].touched && form.controls[column.name].errors && !formReadOnly }"
+        />
+      </ng-container>
+
+      <ng-container *ngIf="column.type === 'select'">
+        <label *ngIf="column.label">{{column.label}}</label>
+        <ng-select
+          [clearable]="false"
+          [items]="column.options"
+          [ngClass]="{ 'is-invalid': form.controls[column.name].touched && form.controls[column.name].errors && !formReadOnly }"
+          [readonly]="formReadOnly"
+          bindLabel="label"
+          bindValue="value"
+          class="form-control p-0"
+          formControlName="{{column.name}}"
+        >
+        </ng-select>
+      </ng-container>
+
+      <ng-container *ngIf="column.type === 'checkbox'">
+        <div class="form-check">
+          <input class="form-check-input" formControlName="{{column.name}}" type="checkbox">
+          <label *ngIf="column.label" class="form-check-label" (click)="form.controls[column.name].patchValue(!form.controls[column.name].value)">{{column.label}}</label>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="form.controls[column.name].touched && form.controls[column.name].errors && !formReadOnly">
+        <app-form-error [errors]="form.controls[column.name].errors" [minLength]="column.minLength"
+                        [maxLength]="column.maxLength"></app-form-error>
+      </ng-container>
+    </div>
+  </div>
+
+  <div *ngIf="showFormButtons" class="form-row my-2">
+    <div class="col d-flex justify-content-end">
+      <button *ngIf="formReadOnly && editButtonConfig.show" class="btn {{editButtonConfig.class}}" type="button"
+              (click)="emitFormAction('edit')">
+        {{editButtonConfig.label}}
+      </button>
+
+      <button *ngIf="!formReadOnly && cancelButtonConfig.show" class="btn {{cancelButtonConfig.class}}" (click)="emitFormAction('edit')" type="button">
+        {{cancelButtonConfig.label}}
+      </button>
+
+      <button *ngIf="!formReadOnly && saveButtonConfig.show" class="btn ml-2 {{saveButtonConfig.class}}" [disabled]="form.invalid || !form.touched" (click)="emitFormAction('save')" type="submit">
+        {{saveButtonConfig.label}}
+      </button>
+
+      <button *ngIf="!formReadOnly && removeButtonConfig.show" class="btn ml-2 {{removeButtonConfig.class}}" [disabled]="removeButtonConfig.disabled" (click)="emitFormAction('remove')" type="button">
+        {{removeButtonConfig.label}}
+      </button>
+    </div>
+  </div>
+
+</form>
+
+
+

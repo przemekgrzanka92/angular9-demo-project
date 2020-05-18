@@ -1,0 +1,15 @@
+{
+  "FORM_ERROR_REQUIRED": "This field is required.",
+  "FORM_ERROR_EMAIL": "Email format is incorrect.",
+  "FORM_ERROR_MINLENGTH": "This field length minimum is {{minLength}}.",
+  "FORM_ERROR_MAXLENGTH": "This field length maximum is {{maxLength}}.",
+  "FORM_ERROR_NOT_EMPTY": "The list can't be empty",
+  "FORM_ERROR_PATTERN": "The value format isn't correct. Required pattern: {{requiredPattern}}",
+  "FORM_ERROR_WHITESPACE": "Field cannot be empty (whitespaces)",
+  "FORM_ERROR_INVALID_BOOLEAN": "The boolean value format isn't correct",
+  "FORM_ERROR_INVALID_NUMBER": "The number format isn't correct",
+  "FORM_ERROR_SMALLER_THAN_PREVIOUS": "This threshold must be bigger than previous",
+  "FORM_ERROR_DATE_BIGGER_THAN_PREVIOUS": "End date must be bigger than start date",
+  "FORM_ERROR_CROSS_FIELD_INVALID": "{{greater}} must be greater than {{lower}}",
+  "FORM_ERROR_PASSWORD_DOES_NOT_MATCH": "Provided passwords are not the same"
+}

@@ -1,0 +1,75 @@
+<div>
+  <div class="container-fluid p-0">
+    <div class="col-12  d-flex flex-column p-0">
+
+      <!--  LIST  -->
+      <table *ngIf="pagedItems && listConfig" class="table">
+        <thead>
+        <tr>
+          <th *ngFor="let field of listConfig.fieldNames" scope="col">{{ field.label }}</th>
+          <th *ngIf="listConfig.actions" scope="col"></th>
+        </tr>
+        </thead>
+
+        <tbody>
+
+        <tr *ngFor="let item of pagedItems">
+
+          <td *ngFor="let field of listConfig.fieldNames">
+            <ng-container *ngIf="!field.type || field.type !== 'boolean'">
+              {{ item[field.fieldName] }}
+            </ng-container>
+            <ng-container *ngIf="field.type && field.type === 'boolean'">
+              <i class="fa fa-lg" [ngClass]="{'fa-check-circle': item[field.fieldName] === true, 'fa-times-circle': item[field.fieldName] === false}" aria-hidden="true"></i>
+            </ng-container>
+
+          </td>
+          <td *ngIf="listConfig.actions" class="dropdown">
+
+            <div class="btn-group" dropdown>
+              <button id="button-basic" dropdownToggle type="button" class="btn btn-light dropdown-toggle"
+                      aria-controls="dropdown-basic">
+                More <span class="caret"></span>
+              </button>
+              <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
+                  role="menu" aria-labelledby="button-basic">
+                <li *ngFor="let action of listConfig.actions" role="menuitem">
+                  <a class="dropdown-item" (click)="actionHandler(action.actionName, item)">{{action.label}}</a>
+                </li>
+              </ul>
+            </div>
+          </td>
+
+        </tr>
+        </tbody>
+      </table>
+
+
+      <!-- PAGINATION -->
+
+      <ul *ngIf="paginator && paginator.pages && paginator.pages.length" class="pagination justify-content-end">
+        <li class="pagination-prev" [ngClass]="{disabled:paginator.currentPage === 1}">
+          <a class="page-link" (click)="setPage(1)">First</a>
+        </li>
+        <li class="pagination-prev" [ngClass]="{disabled:paginator.currentPage === 1}">
+          <a class="page-link" (click)="setPage(paginator.currentPage - 1)">Previous</a>
+        </li>
+        <li class="pagination-page page-item active" *ngFor="let page of paginator.pages"
+            [ngClass]="{active:paginator.currentPage === page}">
+          <a class="page-link" (click)="setPage(page)">{{page}}</a>
+        </li>
+        <li class="pagination-next" [ngClass]="{disabled:paginator.currentPage === paginator.totalPages}">
+          <a class="page-link" (click)="setPage(paginator.currentPage + 1)">Next</a>
+        </li>
+        <li class="pagination-next" [ngClass]="{disabled:paginator.currentPage === paginator.totalPages}">
+          <a class="page-link" (click)="setPage(paginator.totalPages)">Last</a>
+        </li>
+      </ul>
+
+      <div *ngIf="!allItems?.length" class="text-center m-2">
+        <h5 class="primary">No data available.</h5>
+      </div>
+
+    </div>
+  </div>
+</div>

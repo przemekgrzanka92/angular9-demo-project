@@ -1,0 +1,13 @@
+<div class="container">
+
+  <div class="d-flex justify-content-between my-3">
+    <h1>Users</h1>
+    <button class="btn btn-primary">New User</button>
+  </div>
+
+  <app-paginated-list
+    [listConfig]="listConfig"
+    [allItems]="users"
+    (listActionChange)="handleListAction($event)">
+  </app-paginated-list>
+</div>
