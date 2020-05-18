@@ -17,7 +17,7 @@
 
           <td *ngFor="let field of listConfig.fieldNames">
             <ng-container *ngIf="!field.type || field.type !== 'boolean'">
-              {{ item[field.fieldName] }}
+              {{ item[field.fieldName] | paginatedListCell }}
             </ng-container>
             <ng-container *ngIf="field.type && field.type === 'boolean'">
               <i class="fa fa-lg" [ngClass]="{'fa-check-circle': item[field.fieldName] === true, 'fa-times-circle': item[field.fieldName] === false}" aria-hidden="true"></i>

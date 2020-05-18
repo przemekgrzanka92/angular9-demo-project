@@ -1,4 +1,8 @@
 {
+  "ROLE_ADMIN": "Admin",
+  "ROLE_USER": "User",
+
+
   "FORM_ERROR_REQUIRED": "This field is required.",
   "FORM_ERROR_EMAIL": "Email format is incorrect.",
   "FORM_ERROR_MINLENGTH": "This field length minimum is {{minLength}}.",

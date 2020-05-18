@@ -12,7 +12,7 @@ export class User extends BaseModel<UserData> {
   }
 
   get lastName(): string {
-    return this.data && this.data.firstName;
+    return this.data && this.data.lastName;
   }
 
   set lastName(val: string) {
@@ -20,7 +20,7 @@ export class User extends BaseModel<UserData> {
   }
 
   get email(): string {
-    return this.data && this.data.firstName;
+    return this.data && this.data.email;
   }
 
   set email(val: string) {
@@ -28,7 +28,7 @@ export class User extends BaseModel<UserData> {
   }
 
   get role(): string {
-    return this.data && this.data.firstName;
+    return this.data && this.data.role;
   }
 
   set role(val: string) {
@@ -36,8 +36,8 @@ export class User extends BaseModel<UserData> {
   }
 
 
-  constructor(json: UserData) {
-    super(json);
+  constructor(data: UserData) {
+    super(data);
   }
 
 }

@@ -1,3 +1,3 @@
 export declare class BaseData {
-  id?: number | string;
+  id: number | string;
 }

@@ -5,17 +5,25 @@ import {UsersNewComponent} from './components/users-new/users-new.component';
 import {UsersDetailsComponent} from './components/users-details/users-details.component';
 import {RouterModule, Routes} from '@angular/router';
 import {SharedModule} from '../../shared/shared.module';
+import {FormWrapperModule} from '../form-wrapper/form-wrapper.module';
 
 const routes: Routes = [
-  {path: '', component: UsersListComponent}
+  {path: '', component: UsersListComponent},
+  {path: 'new', component: UsersNewComponent},
+  {path: ':id', component: UsersDetailsComponent},
 ];
 
 @NgModule({
-  declarations: [UsersListComponent, UsersNewComponent, UsersDetailsComponent],
+  declarations: [
+    UsersListComponent,
+    UsersNewComponent,
+    UsersDetailsComponent
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    SharedModule
+    SharedModule,
+    FormWrapperModule
   ]
 })
 export class UsersModule {

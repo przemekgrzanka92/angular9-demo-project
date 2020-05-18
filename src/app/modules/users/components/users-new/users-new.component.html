@@ -1,1 +1,13 @@
-<p>users-new works!</p>
+<div class="container">
+
+  <div class="my-3">
+    <h2>Create New User</h2>
+  </div>
+
+  <app-form-wrapper
+    [formJsonConfig]="formJson"
+    (formAction)="handleFormAction($event)"
+    (formChange)="handleFormChange($event)"
+  ></app-form-wrapper>
+
+</div>

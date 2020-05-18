@@ -1,13 +1,16 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ListConfig} from '../../../../shared/components/paginated-list/paginated-list.component';
 import {User} from '../../models/user.model';
 import {Router} from '@angular/router';
+import {UsersService} from '../../users.service';
+import {cloneDeep} from 'lodash';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-users-list',
   templateUrl: './users-list.component.html'
 })
-export class UsersListComponent implements OnInit {
+export class UsersListComponent implements OnInit, OnDestroy {
 
   listConfig: ListConfig = {
     fieldNames: [
@@ -23,11 +26,23 @@ export class UsersListComponent implements OnInit {
   };
 
   users: User[] = [];
+  usersSub: Subscription;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private usersService: UsersService) {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.usersService.getUsers().subscribe(res => {
+      if (res) {
+        this.users = cloneDeep(res);
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+    if (this.usersSub) {
+      this.usersSub.unsubscribe();
+    }
   }
 
   handleListAction(event) {
@@ -47,7 +62,7 @@ export class UsersListComponent implements OnInit {
   }
 
   private deleteUser(user: User) {
-
+    this.usersService.removeUser(user.id).then(res => console.log(res));
   }
 
 }

@@ -1,1 +1,16 @@
-<p>users-details works!</p>
+<div *ngIf="user" class="container">
+
+  <div class="d-flex justify-content-between my-3">
+    <h2>{{user.email}}</h2>
+    <button class="btn btn-secondary" [routerLink]="['']">Go Back</button>
+  </div>
+
+  <app-form-wrapper
+    [formJsonConfig]="formJson"
+    [formReadOnly]="readOnlyMode"
+    [initialFormValue]="userFormValue"
+    (formAction)="handleFormAction($event)"
+    (formChange)="handleFormChange($event)"
+  ></app-form-wrapper>
+
+</div>
