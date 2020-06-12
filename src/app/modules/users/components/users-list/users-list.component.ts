@@ -5,6 +5,7 @@ import {UsersService} from '../../users.service';
 import {cloneDeep} from 'lodash';
 import {Subscription} from 'rxjs';
 import {ListConfig} from '../../../../shared/models/list.data';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-users-list',
@@ -28,7 +29,7 @@ export class UsersListComponent implements OnInit, OnDestroy {
   users: User[] = [];
   usersSub: Subscription;
 
-  constructor(private router: Router, private usersService: UsersService) {
+  constructor(private router: Router, private usersService: UsersService, public location: Location) {
   }
 
   ngOnInit(): void {
